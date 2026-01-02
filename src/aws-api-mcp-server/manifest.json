@@ -1,0 +1,54 @@
+{
+  "author": {
+    "name": "Amazon Web Services",
+    "url": "https://awslabs.github.io/mcp/"
+  },
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "linux",
+      "win32"
+    ],
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  },
+  "description": "The AWS API MCP Server lets AI assistants manage AWS resources using AWS CLI commands. It acts as a secure bridge, enabling creation, updates, and management across all AWS services. It supports the latest AWS APIs, even those released after the AI's knowledge cutoff.",
+  "display_name": "AWS API MCP Server",
+  "documentation": "https://awslabs.github.io/mcp/servers/aws-api-mcp-server/",
+  "homepage": "https://awslabs.github.io/mcp/servers/aws-api-mcp-server/",
+  "icon": "aws.png",
+  "keywords": [
+    "AWS",
+    "cloud",
+    "infrastructure"
+  ],
+  "license": "Apache-2.0",
+  "manifest_version": "0.4",
+  "name": "awslabs.aws-api-mcp-server",
+  "server": {
+    "entry_point": "awslabs/aws_api_mcp_server/server.py",
+    "mcp_config": {
+      "args": [
+        "run",
+        "--directory",
+        "${__dirname}",
+        "awslabs.aws-api-mcp-server"
+      ],
+      "command": "python"
+    },
+    "type": "uv"
+  },
+  "support": "https://github.com/awslabs/mcp/issues",
+  "tools": [
+    {
+      "description": "Suggest AWS CLI commands based on a natural language query. This is a FALLBACK tool to use when you are uncertain about the exact AWS CLI command needed to fulfill a user's request. Uses remote AWS API endpoint for ML-powered suggestions. Returns up to 10 most likely commands with confidence scores, descriptions, and required parameters. Note: Requires internet connectivity.",
+      "name": "suggest_aws_commands"
+    },
+    {
+      "description": "Execute AWS CLI commands with validation and proper error handling. This is the PRIMARY tool to use when you are confident about the exact AWS CLI command needed. Supports all AWS CLI commands with validation, pagination control, and security policy enforcement. Commands are executed with proper IAM credential management and file system restrictions.",
+      "name": "call_aws"
+    }
+  ],
+  "version": "1.3.1"
+}
