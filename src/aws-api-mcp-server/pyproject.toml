@@ -147,3 +147,6 @@ exclude_also = [
 
 [tool.coverage.run]
 source = ["awslabs"]
+
+[tool.uv.sources]
+awscli = { git = "https://github.com/arnewouters/aws-cli", branch = "experimental/v2-relative-import" }

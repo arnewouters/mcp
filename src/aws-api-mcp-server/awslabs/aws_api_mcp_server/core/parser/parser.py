@@ -421,7 +421,7 @@ def _handle_service_command(
     _validate_global_args(service, global_args)
     region = getattr(global_args, 'region', None)
 
-    service_parser = service_command._create_parser()
+    service_parser = service_command.create_parser()
     service_args, service_remaining = service_parser.parse_known_args(remaining)
     operation_parser = ArgTableParser(operation_command.arg_table)
     parsed_args = operation_parser.parse_operation_args(command_metadata, service_remaining)
@@ -429,7 +429,7 @@ def _handle_service_command(
 
     try:
         parameters = operation_command._build_call_parameters(
-            parsed_args.operation_args, operation_command.arg_table, global_args
+            parsed_args.operation_args, operation_command.arg_table
         )
     except ParamError as exc:
         raise ShortHandParserError(exc.cli_name, exc.message) from exc
