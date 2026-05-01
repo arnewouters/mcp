@@ -64,7 +64,10 @@ from typing import Annotated, Any, Optional
 
 
 logger.remove()
-logger.add(sys.stderr, level=FASTMCP_LOG_LEVEL)
+# Use sys.__stderr__ (the original stderr fd) instead of sys.stderr so that
+# contextlib.redirect_stderr() in execute_awscli_customization doesn't cause
+# log messages to be captured into the driver's StringIO buffer.
+logger.add(sys.__stderr__, level=FASTMCP_LOG_LEVEL)
 
 log_dir = Path.home() / '.aws' / 'aws-api-mcp'
 log_dir.mkdir(parents=True, exist_ok=True)

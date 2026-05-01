@@ -158,9 +158,6 @@ def execute_awscli_customization(
     if AWS_API_MCP_PROFILE_NAME and not any(elem == '--profile' for elem in args):
         args.extend(['--profile', AWS_API_MCP_PROFILE_NAME])
 
-    # Flush logger before executing AWS CLI customization because the logger also outputs to stderr
-    logger.complete()
-
     try:
         stdout_capture = StringIO()
         stderr_capture = StringIO()
